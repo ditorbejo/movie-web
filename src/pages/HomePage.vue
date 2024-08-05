@@ -26,6 +26,27 @@ async function searchFilm() {
   }
 }
 
+async function handleChangeSearch(name) {
+  console.log('value', name)
+  if (name.value !== null) {
+    const response = await fetch(`http://www.omdbapi.com/?s=${name}&apikey=${apiKey}`)
+    if (!response.ok) {
+      throw new Error('Network response was not ok')
+    }
+    const data = await response.json()
+    if (data.Response === 'True') {
+      console.log(data.Search)
+      listMovie.value = []
+      listMovie.value.push(...data.Search)
+      console.log(listMovie.value)
+    } else {
+      console.error('Error:', data.Error)
+    }
+  } else {
+    listMovie.value = []
+  }
+}
+
 async function getPopularFilm() {
   console.log(searchTerm)
   const response = await fetch(`http://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
@@ -80,6 +101,7 @@ onMounted(async () => {
           type="text"
           class="border border-black w-full rounded-2xl p-2"
           v-model="searchTerm"
+          @input="handleChangeSearch(searchTerm)"
           placeholder="Ketik film disini"
         />
         <button
@@ -90,6 +112,7 @@ onMounted(async () => {
         </button>
       </div>
     </div>
+    <div><p class="text-2xl font-bold">Popular 2024</p></div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <div v-for="(item, index) in listMovie" :key="index" @click="getDetailFilm(item)">
         <CardMovieComponent

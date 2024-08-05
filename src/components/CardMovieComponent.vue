@@ -4,7 +4,11 @@ defineProps(['title', 'year', 'type', 'poster'])
 
 <template>
   <div class="flex flex-col p-2 bg-[#F8EDE3] gap-4 rounded-2xl">
-    <img :src="poster" class="h-[200px] lg:h-[400px] object-cover rounded-2xl w-full" alt="" />
+    <img
+      :src="poster"
+      class="h-[200px] lg:h-[400px] object-cover lg:object-fill rounded-2xl w-full"
+      alt=""
+    />
 
     <div class="flex flex-col p-2 rounded-2xl">
       <div class="py-2">
