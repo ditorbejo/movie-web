@@ -11,7 +11,7 @@ const showModal = ref(false)
 
 async function searchFilm() {
   console.log(searchTerm)
-  const response = await fetch(`https://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
+  const response = await fetch(`http://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -28,7 +28,7 @@ async function searchFilm() {
 
 async function getPopularFilm() {
   console.log(searchTerm)
-  const response = await fetch(`https://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
+  const response = await fetch(`http://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -46,7 +46,7 @@ async function getDetailFilm(item) {
   console.log(item)
   const idFilm = item.imdbID
   console.log(console.log('ini id film', idFilm))
-  const response = await fetch(`https://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
+  const response = await fetch(`http://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -55,9 +55,11 @@ async function getDetailFilm(item) {
   detailFilm.value = data
   console.log(detailFilm.value)
   showModal.value = true
+  console.log('ini show modal', showModal.value)
 }
 
 function closeModal() {
+  console.log('close modal')
   showModal.value = false
 }
 
@@ -103,11 +105,11 @@ onMounted(async () => {
 
   <div
     :class="[
-      'h-screen w-full fixed right-0 translate-x-full overflow-y-auto top-0 bg-black p-2 z-10 md:flex md:items-center md:justify-center',
-      showModal ? 'translate-x-0' : ''
+      'h-screen w-full fixed right-0 overflow-y-auto top-0 bg-black p-2 z-10 md:flex md:items-center md:justify-center',
+      showModal ? 'translate-x-0' : 'translate-x-full'
     ]"
   >
-    <div class="flex items-center justify-center relative bg-white p-6 rounded-lg shadow-lg">
+    <div class="flex items-center justify-center relative">
       <DetailFilmPage
         :title="detailFilm.Title"
         :year="detailFilm.Year"
