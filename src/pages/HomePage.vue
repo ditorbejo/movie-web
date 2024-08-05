@@ -78,9 +78,9 @@ onMounted(async () => {
       <div class="flex flex-row w-full justify-between gap-4 h-10">
         <input
           type="text"
-          class="border border-black w-full rounded-2xl"
+          class="border border-black w-full rounded-2xl p-2"
           v-model="searchTerm"
-          placeholder="ketik film disini"
+          placeholder="Ketik film disini"
         />
         <button
           class="bg-yellow-800 px-3 py-2 rounded-2xl text-white capitalize"
