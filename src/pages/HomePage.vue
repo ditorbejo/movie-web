@@ -11,7 +11,7 @@ const showModal = ref(false)
 
 async function searchFilm() {
   console.log(searchTerm)
-  const response = await fetch(`http://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -28,7 +28,7 @@ async function searchFilm() {
 
 async function getPopularFilm() {
   console.log(searchTerm)
-  const response = await fetch(`http://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -46,7 +46,7 @@ async function getDetailFilm(item) {
   console.log(item)
   const idFilm = item.imdbID
   console.log(console.log('ini id film', idFilm))
-  const response = await fetch(`http://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
