@@ -49,7 +49,7 @@ async function handleChangeSearch(name) {
 
 async function getPopularFilm() {
   console.log(searchTerm)
-  const response = await fetch(`http://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?s=${popularValue}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
