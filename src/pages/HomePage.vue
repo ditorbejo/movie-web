@@ -11,7 +11,7 @@ const showModal = ref(false)
 
 async function searchFilm() {
   console.log(searchTerm)
-  const response = await fetch(`http://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?s=${searchTerm.value}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -29,7 +29,7 @@ async function searchFilm() {
 async function handleChangeSearch(name) {
   console.log('value', name)
   if (name.value !== null) {
-    const response = await fetch(`http://www.omdbapi.com/?s=${name}&apikey=${apiKey}`)
+    const response = await fetch(`https://www.omdbapi.com/?s=${name}&apikey=${apiKey}`)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
