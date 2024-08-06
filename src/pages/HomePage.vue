@@ -67,7 +67,7 @@ async function getDetailFilm(item) {
   console.log(item)
   const idFilm = item.imdbID
   console.log(console.log('ini id film', idFilm))
-  const response = await fetch(`http://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
+  const response = await fetch(`https://www.omdbapi.com/?i=${idFilm}&apikey=${apiKey}`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }
@@ -112,7 +112,8 @@ onMounted(async () => {
         </button>
       </div>
     </div>
-    <div><p class="text-2xl font-bold">Popular 2024</p></div>
+    <div v-if="searchTerm === ''"><p class="text-2xl font-bold">Popular 2024</p></div>
+    <div v-else><p class="text-2xl font-bold">Hasil Search</p></div>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <div v-for="(item, index) in listMovie" :key="index" @click="getDetailFilm(item)">
         <CardMovieComponent
